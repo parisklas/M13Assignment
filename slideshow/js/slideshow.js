@@ -4,10 +4,12 @@ const $ = (id) => document.getElementById(id)
 const createSlideshow = function () {
     // PRIVATE VARIABLES AND FUNCTIONS
     let timer
-    let play = true    
+    let play = true
     let nodes = { image: null, caption: null }
     let img = { cache: [], counter: 0 }
-    
+    let speed = 2000;
+
+
     const stopSlideShow = function () {
         clearInterval(timer)
     }
@@ -30,6 +32,7 @@ const createSlideshow = function () {
             btn.value = 'Pause'
         }
     }
+
 
     // PUBLIC METHODS THAT HAVE ACCESS TO PRIVATE VARIABLES AND FUNCTIONS
     return {
@@ -65,7 +68,16 @@ const createSlideshow = function () {
                 // TOGGLE PLAY 'FLAG'
                 play = !play
             }
+        },
+        getInterval: function () {
+            let set_speed = parseInt(prompt(`Current speed : ${speed}. Please set new speed in ms`));
+            speed = set_speed;
+            return speed;
+        },
+        setInterval: function() {
+            timer = set_speed;
         }
+
     }
 }
 
@@ -85,4 +97,6 @@ window.addEventListener('load', () => {
     slideshow.loadImages(slides).startSlideShow($('image'), $('caption'))
     // PAUSE THE SLIDESHOW
     $('play_pause').onclick = slideshow.createToggleHandler()
+    // SET SPEED OF SLIDESHOW
+    $('set_speed').onclick = slideshow.getSpeed();
 })

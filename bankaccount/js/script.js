@@ -1,5 +1,5 @@
 const bankAccount = function (ownerName) {
-    let ownerName = " ";
+    let ownerName = ' ';
     let balance = 0;
     return {
       withdrawal: function(withdrawalAmount) {
